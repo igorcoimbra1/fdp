@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initializeGame() {
-        setMessage('Bem-vindo ao Filho da Puta! Escolha o número de jogadores e inicie o jogo.');
+        setMessage('Bem-vindo ao FDP! Escolha o número de jogadores e inicie o jogo.');
         startGameBtn.textContent = 'Iniciar Jogo';
         startGameBtn.disabled = false;
         playerCountSelect.disabled = false;

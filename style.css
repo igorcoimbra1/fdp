@@ -19,10 +19,11 @@ body {
     margin: 0;
     padding: 20px;
     text-align: center;
-    background-image: url('assets/chao.png');
+    background-color: var(--background-color);
+    /* background-image: url('assets/chao.png');
     background-size:contain;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: fixed; */
 }
 
 header{
@@ -51,6 +52,7 @@ header{
 
 #game-container, #table-area, #game-board {
     max-width: 1200px;
+    min-width: 300px;
     margin: auto;
     display: flex;
     gap: 20px;
