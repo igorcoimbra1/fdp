@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>FDP - Multiplayer Online</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <h1>FDP Online</h1>
+        <div class="game-mode-toggle">
+            <a href="/offline" class="mode-link">🎮 Jogo Offline</a>
+        </div>
+    </header>
+
+    <main id="game-container">
+        <!-- Tela de entrada -->
+        <div id="lobby-screen">
+            <div id="join-controls">
+                <h2>Entrar no Jogo</h2>
+                <input type="text" id="player-name" placeholder="Seu nome" maxlength="15">
+                <input type="text" id="room-id" placeholder="ID da Sala (opcional)">
+                <button id="join-game-btn">Entrar/Criar Sala</button>
+                <p class="help-text">Se não informar o ID da sala, uma nova será criada</p>
+            </div>
+        </div>
+
+        <!-- Tela da sala de espera -->
+        <div id="waiting-room" class="hidden">
+            <h2>Sala: <span id="current-room-id"></span></h2>
+            <div id="room-info">
+                <p>Compartilhe este ID com seus amigos!</p>
+                <button id="copy-room-btn">Copiar ID da Sala</button>
+            </div>
+            
+            <div id="players-list">
+                <h3>Jogadores na Sala:</h3>
+                <div id="players-container"></div>
+            </div>
+            
+            <div id="room-controls">
+                <button id="ready-btn">Pronto</button>
+                <button id="start-multiplayer-btn" class="hidden" disabled>Iniciar Jogo</button>
+                <button id="leave-room-btn">Sair da Sala</button>
+            </div>
+            
+            <div id="room-message"></div>
+        </div>
+
+        <!-- Jogo principal (igual ao original, mas adaptado) -->
+        <div id="multiplayer-game" class="hidden">
+            <div id="game-info">
+                <div id="room-header">
+                    <span>Sala: <span id="game-room-id"></span></span>
+                    <span id="game-round-info">Rodada 1</span>
+                </div>
+                <div id="game-message" class="hidden"></div>
+            </div>
+
+            <!-- A mesa onde as cartas da rodada atual são jogadas -->
+            <div id="table-area">
+                <div id="table-cards-container"></div>
+            </div>
+
+            <div id="game-board">
+                <!-- As áreas dos jogadores com suas mãos serão inseridas aqui -->
+            </div>
+
+            <div id="betting-controls" class="hidden">
+                <h2 id="betting-title">Sua vez de apostar</h2>
+                <div id="betting-options">
+                    <!-- Botões de aposta serão gerados aqui -->
+                </div>
+                <p id="betting-info"></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="multiplayer-complete.js"></script>
+</body>
+</html>

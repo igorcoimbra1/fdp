@@ -248,6 +248,186 @@ header{
 
 .hidden { display: none; }
 
+/* Estilos específicos para Multiplayer */
+#lobby-screen, #waiting-room, #multiplayer-game {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+#join-controls {
+    background-color: var(--surface-color);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    max-width: 400px;
+    margin: auto;
+}
+
+#join-controls h2 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+#join-controls input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    background-color: transparent;
+    color: var(--text-color);
+    font-family: var(--primary-font);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+#join-controls input::placeholder {
+    color: rgba(240, 240, 240, 0.6);
+}
+
+#join-controls input:focus {
+    outline: none;
+    box-shadow: var(--glow-effect);
+}
+
+.help-text {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 15px;
+}
+
+#room-info {
+    background-color: rgba(228, 197, 128, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--primary-color);
+    margin: 20px 0;
+}
+
+#copy-room-btn {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--primary-font);
+    transition: all 0.3s;
+}
+
+#copy-room-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+}
+
+#players-list {
+    background-color: var(--surface-color);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+#players-list h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+.player-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(240, 240, 240, 0.1);
+}
+
+.player-item:last-child {
+    border-bottom: none;
+}
+
+.player-name {
+    flex-grow: 1;
+    font-weight: bold;
+}
+
+.host-badge {
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.ready-badge {
+    color: #4ade80;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.not-ready {
+    color: #888;
+    font-size: 1.2rem;
+}
+
+#room-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#room-controls button {
+    font-family: var(--primary-font);
+    font-size: 1rem;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#room-controls button:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+    box-shadow: var(--glow-effect);
+}
+
+#room-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#ready-btn.ready {
+    background-color: #4ade80;
+    border-color: #4ade80;
+    color: white;
+}
+
+#room-message {
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: bold;
+    min-height: 20px;
+}
+
+#game-info {
+    background-color: var(--surface-color);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+#room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
 /* Media queries para responsividade em smartphones */
 @media (max-width: 768px) {
     body {
@@ -337,6 +517,35 @@ header{
         gap: 4px;
         height: auto;
     }
+
+    #lobby-screen, #waiting-room, #multiplayer-game {
+        padding: 15px;
+    }
+    
+    #join-controls {
+        padding: 20px;
+    }
+    
+    #room-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #room-controls button {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .player-item {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    #room-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -385,6 +594,20 @@ header{
     
     #table-cards-container .card:not(:first-child) {
         margin-left: -30px;
+    }
+
+    #join-controls {
+        padding: 15px;
+        margin: 0 10px;
+    }
+    
+    .player-item {
+        font-size: 0.9rem;
+    }
+    
+    .host-badge {
+        font-size: 0.7rem;
+        padding: 1px 6px;
     }
 }
 
