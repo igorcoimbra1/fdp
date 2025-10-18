@@ -1,0 +1,247 @@
+:root {
+    --primary-font: 'Montserrat', sans-serif;
+    --title-font: 'Playfair Display', serif;
+    --background-color: #1a1a1a;
+    --surface-color: #2c2c2c;
+    --primary-color: #e4c580;
+    --text-color: #f0f0f0;
+    --card-bg: #fdfdfd;
+    --card-text: #0a0a0a;
+    --danger-color: #c72a2a;
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    --glow-effect: 0 0 15px rgba(228, 197, 128, 0.5);
+    
+}
+
+body {
+    font-family: var(--primary-font);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    background-image: url('assets/chao.png');
+    background-size:contain;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+header{
+    max-width: 1200px;
+    margin: auto;
+    margin-bottom: 10px;
+    background-color: var(--surface-color);
+    border-radius: 12px;
+}
+
+.main-header h1 {
+    font-family: var(--title-font);
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin: 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+.main-header .subtitle {
+    font-size: 1.2rem;
+    margin: 0 0 30px 0;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+#game-container, #table-area, #game-board {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    gap: 20px;
+}
+
+#game-container { flex-direction: column; }
+#table-area { 
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 12px;
+    min-height: 180px;
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+}
+#table-cards-container { display: flex; gap: 15px; }
+#game-board { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    padding: 0;
+}
+
+#game-controls {
+    background-color: var(--surface-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#game-controls select, #game-controls button, .bet-btn {
+    font-family: var(--primary-font);
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
+}
+
+#game-controls button:hover, .bet-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+    box-shadow: var(--glow-effect);
+}
+
+.bet-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #888;
+    color: #888;
+}
+
+.bet-btn:disabled:hover { background-color: transparent; box-shadow: none; }
+
+#game-message {
+    background-color: rgba(228, 197, 128, 0.1);
+    color: var(--primary-color);
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid var(--primary-color);
+    line-height: 1.5;
+}
+
+.player-area {
+    background-color: var(--surface-color);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: box-shadow 0.3s, opacity 0.5s;
+}
+
+.player-area.active-player {
+    box-shadow: var(--glow-effect), var(--card-shadow);
+}
+
+.player-area.eliminated {
+    opacity: 0.5;
+    background-color: #1c1c1c;
+}
+
+.player-info h3 { margin: 0; font-size: 1.3rem; color: var(--primary-color); }
+.player-stats { 
+    font-size: 0.9rem; 
+    opacity: 0.9;
+    height: 20px; 
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-stats .lives::before {
+    content: '♥';
+    color: var(--danger-color);
+    margin-right: 4px;
+    font-size: 1.1em;
+}
+
+.card-container {
+    perspective: 1000px;
+    display: flex; 
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 140px;
+    align-items: center;
+}
+
+.eliminated-text {
+    font-family: var(--title-font);
+    font-size: 1.8rem;
+    color: var(--danger-color);
+    font-weight: bold;
+    text-align: center;
+}
+
+.card {
+    width: 100px;
+    height: 140px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s, margin 0.3s;
+    cursor: pointer;
+}
+
+.card:not(:first-child) { margin-left: -45px; }
+
+.card.flipped { transform: rotateY(180deg); }
+
+.card.playable {
+    /* Destaque para carta jogável, virada ou não */
+    transform: translateY(-10px);
+}
+
+.card.playable:hover {
+    transform: translateY(-20px);
+    z-index: 100;
+}
+
+/* Combinação para carta do jogador virada para cima */
+.card.flipped.playable {
+    transform: rotateY(180deg) translateY(-10px);
+}
+
+.card.flipped.playable:hover {
+    transform: rotateY(180deg) translateY(-20px);
+    box-shadow: var(--glow-effect);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; 
+}
+
+.card-front { background-color: var(--card-bg); color: var(--card-text); transform: rotateY(180deg); }
+.card-back { background: linear-gradient(145deg, var(--primary-color), #b89b60); border: 2px solid var(--surface-color); }
+
+.card-value { font-size: 2.5rem; font-weight: bold; }
+.card-suit { font-size: 2rem; }
+.card-suit.red { color: var(--danger-color); }
+.card-suit.black { color: #1a1a1a; }
+
+#betting-controls {
+    padding: 20px;
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: opacity 0.5s, transform 0.3s;
+}
+
+#betting-controls.hidden { opacity: 0; transform: scale(0.95); pointer-events: none; }
+#betting-controls h2 { margin-top: 0; color: var(--primary-color); }
+#betting-options { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
+
+.hidden { display: none; }

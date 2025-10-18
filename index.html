@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Vazante</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Filho da Puta</h1>
+    </header>
+
+    <main id="game-container">
+        <div id="game-controls">
+            <label for="player-count">Número de Jogadores:</label>
+            <select id="player-count">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+            <button id="start-game-btn">Iniciar Jogo</button>
+            <div id="game-message" class="hidden"></div>
+        </div>
+
+        <!-- A mesa onde as cartas da rodada atual são jogadas -->
+        <div id="table-area">
+            <div id="table-cards-container"></div>
+        </div>
+
+        <div id="game-board">
+            <!-- As áreas dos jogadores com suas mãos serão inseridas aqui -->
+        </div>
+
+        <div id="betting-controls" class="hidden">
+            <h2 id="betting-title">Sua vez de apostar</h2>
+            <div id="betting-options">
+                <!-- Botões de aposta serão gerados aqui -->
+            </div>
+            <p id="betting-info"></p>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
