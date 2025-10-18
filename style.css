@@ -247,3 +247,171 @@ header{
 #betting-options { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
 
 .hidden { display: none; }
+
+/* Media queries para responsividade em smartphones */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .main-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    header {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+    
+    #game-container {
+        gap: 15px;
+    }
+    
+    #game-controls {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    #game-controls select, #game-controls button {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+        min-height: 44px; /* Tamanho mínimo para touch */
+    }
+    
+    #table-area {
+        padding: 10px;
+        min-height: 120px;
+    }
+    
+    #table-cards-container {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    #game-board {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .player-area {
+        padding: 12px;
+    }
+    
+    .card {
+        width: 80px;
+        height: 112px;
+    }
+    
+    .card:not(:first-child) {
+        margin-left: -35px;
+    }
+    
+    .card-value {
+        font-size: 2rem;
+    }
+    
+    .card-suit {
+        font-size: 1.6rem;
+    }
+    
+    #betting-controls {
+        padding: 15px;
+    }
+    
+    #betting-options {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .bet-btn {
+        padding: 15px 20px;
+        font-size: 1.1rem;
+        min-height: 50px;
+    }
+    
+    .player-stats {
+        font-size: 0.85rem;
+        flex-direction: column;
+        gap: 4px;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header h1 {
+        font-size: 2rem;
+    }
+    
+    #game-controls {
+        padding: 10px;
+    }
+    
+    #game-controls select, #game-controls button {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .card {
+        width: 60px;
+        height: 84px;
+    }
+    
+    .card:not(:first-child) {
+        margin-left: -25px;
+    }
+    
+    .card-value {
+        font-size: 1.5rem;
+    }
+    
+    .card-suit {
+        font-size: 1.2rem;
+    }
+    
+    .player-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .eliminated-text {
+        font-size: 1.4rem;
+    }
+    
+    #table-cards-container .card {
+        width: 70px;
+        height: 98px;
+    }
+    
+    #table-cards-container .card:not(:first-child) {
+        margin-left: -30px;
+    }
+}
+
+/* Ajustes para melhorar a usabilidade touch */
+@media (hover: none) and (pointer: coarse) {
+    .card.playable {
+        transform: translateY(-5px);
+        box-shadow: var(--glow-effect);
+    }
+    
+    .card.playable:active {
+        transform: translateY(0px);
+        transition: transform 0.1s;
+    }
+    
+    .card.flipped.playable {
+        transform: rotateY(180deg) translateY(-5px);
+        box-shadow: var(--glow-effect);
+    }
+    
+    .card.flipped.playable:active {
+        transform: rotateY(180deg) translateY(0px);
+    }
+    
+    #game-controls button:active, .bet-btn:active {
+        transform: scale(0.98);
+    }
+}
+
+.hidden { display: none; }

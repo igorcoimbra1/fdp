@@ -367,7 +367,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const isPlayerTurn = gameState.phase === 'playing' && gameState.currentPlayerIndex === playerIndex;
         if (isHand && isPlayerTurn) {
             cardElement.classList.add('playable');
-            cardElement.onclick = () => playCard(playerIndex, card.id);
+            
+            // Suporte para touch e click
+            const handleCardPlay = (e) => {
+                e.preventDefault();
+                playCard(playerIndex, card.id);
+            };
+            
+            cardElement.onclick = handleCardPlay;
+            cardElement.ontouchend = handleCardPlay;
         }
 
         const suitInfo = getSuitSymbol(card.suit);
@@ -403,7 +411,15 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.textContent = i;
             btn.dataset.bet = i;
             if (i === forbiddenBet) btn.disabled = true;
-            btn.onclick = () => registerBet(i);
+            
+            // Suporte para touch e click
+            const handleBet = (e) => {
+                e.preventDefault();
+                if (!btn.disabled) registerBet(i);
+            };
+            
+            btn.onclick = handleBet;
+            btn.ontouchend = handleBet;
             bettingOptions.appendChild(btn);
         }
         bettingInfo.textContent = isLastToBet && forbiddenBet !== -1 ? `A soma das apostas não pode ser ${gameState.round}.` : '';
